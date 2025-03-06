@@ -1,5 +1,7 @@
 # i3blocks-audio-visualizer
 
+![Description of Image](screenshot.jpg)
+
 Audio visualizer is a way to have visual feedback that music is playing now in i3blocks. Visualization is fake as it is randomly generated. 
 
 Please install playerctl and alsa-utils for it to work.
@@ -12,3 +14,4 @@ Add to your i3blocks config:
 command=$SCRIPT_DIR/visualizer
 interval=1
 ```
+
