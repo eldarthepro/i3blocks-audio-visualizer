@@ -1,0 +1,26 @@
+#!/bin/bash
+
+status=$(playerctl status 2>/dev/null)
+
+# Number of bars to display
+num_bars=5
+
+bars=("▁" "▂" "▃" "▄" "▅" "▆" "▇" "█")
+
+visualizer=""
+
+if [ "$status" == "Playing" ]; then
+    volume=$(amixer get Master | grep -oP '\d+%' | head -1 | tr -d '%')
+
+    for ((i=0; i<num_bars; i++)); do
+        if [ "$volume" -ge 50 ]; then
+            #make bars highter if volume > 50%
+	    rand_index=$(( RANDOM % ( ${#bars[@]} - 3 ) + 3 ))
+        else
+            rand_index=$(( RANDOM % ${#bars[@]} ))
+        fi
+        visualizer+="${bars[$rand_index]}"
+    done
+fi
+
+echo "$visualizer"
